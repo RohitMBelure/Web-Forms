@@ -25,3 +25,11 @@ class User(db.Model):
 	
 	def __repr__(self):
 		return '<User %r>' % self.username
+
+class Role(db.Model):
+	
+	users = db.relationship('User', backref='role')
+
+class User(db.Model):
+
+	role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
